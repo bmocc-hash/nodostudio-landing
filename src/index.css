@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: #021628;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── GLASS CARD BORDER ─────────────────────────────────── */
+.glass-card {
+  position: relative;
+  background: rgba(255,255,255,0.01);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-blend-mode: luminosity;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.1),
+    0 24px 64px rgba(0,0,0,0.4);
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.4px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── NAV LINK HOVER ────────────────────────────────────── */
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: #00a0a0;
+  transition: width 0.25s ease;
+}
+.nav-link:hover { color: #00a0a0; }
+.nav-link:hover::after { width: 100%; }
+
+/* ── CTA BUTTON ────────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #021628;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 rgba(0,160,160,0);
+}
+.btn-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0,160,160,0.3);
+}
+
+/* ── SECONDARY BUTTON ──────────────────────────────────── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 14px 4px;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-secondary:hover {
+  color: white;
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* ── VIDEO ─────────────────────────────────────────────── */
+video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+/* ── STAT PILL ─────────────────────────────────────────── */
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  padding: 6px 14px 6px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+}
+
+.stat-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #00a0a0;
+  box-shadow: 0 0 6px rgba(0,160,160,0.8);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ── TICKER ────────────────────────────────────────────── */
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  animation: ticker 20s linear infinite;
+  white-space: nowrap;
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── GRID LINES (desktop) ──────────────────────────────── */
+.grid-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+/* ── MOBILE MENU ───────────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,22,40,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  padding: 12px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  width: 100%;
+  text-align: center;
+}
+.mobile-menu a:hover { color: #00a0a0; }
+
+/* ── FLOATING BADGE ────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(-50px) translateX(0); }
+  50%       { transform: translateY(-56px) translateX(2px); }
+}
+.float-card { animation: float 5s ease-in-out infinite; }
+
+/* ── CODE HIGHLIGHT ────────────────────────────────────── */
+.code-tag {
+  font-family: 'Instrument Serif', serif;
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+
+
+/* ── SERVICES GRID: 4 cols desktop, 2 tablet, 1 mobile ──────────────── */
+.services-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* ── STEPS GRID ──────────────────────────────────────────────────────── */
+.steps-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* ── TOOLS GRID: 2 cols desktop ─────────────────────────────────────── */
+.tools-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+/* ── TABLET (≤ 1024px) ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .steps-grid    { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
+  .tools-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ── MOBILE (≤ 768px) ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .desktop-nav    { display: none !important; }
+  .hamburger-btn  { display: flex !important; }
+  .grid-line      { display: none; }
+  .desktop-only   { display: none; }
+
+  .services-grid { grid-template-columns: 1fr !important; }
+  .steps-grid    { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .tools-grid    { grid-template-columns: 1fr !important; }
+
+  
+
+  header { padding: 0 20px !important; }
+
+  .ticker-track { animation-duration: 28s; }
+}
+
+@media (max-width: 480px) {
+  .stat-pill { font-size: 10px; padding: 5px 10px 5px 6px; }
+  .btn-cta   { padding: 12px 20px; font-size: 12px; }
+  h1 { font-size: clamp(24px, 8vw, 40px) !important; }
+}
+
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+/* ── SUBTLE BAR TEXTURE (todas las secciones) ───────────────────────── */
+
+
+.full-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(0, 160, 160, 0.022) 18px,
+      rgba(0, 160, 160, 0.022) 20px
+    );
+  mask-image: radial-gradient(ellipse at 65% 40%, rgba(0,0,0,0.55) 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse at 65% 40%, rgba(0,0,0,0.55) 0%, transparent 68%);
+}
+
+/* Las barras varían en altura usando múltiples gradientes superpuestos */
+.full-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 6px,
+      rgba(0, 128, 128, 0.03) 6px,
+      rgba(0, 128, 128, 0.03) 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(0, 160, 160, 0.04) 38px,
+      rgba(0, 160, 160, 0.04) 42px
+    );
+  mask-image: radial-gradient(ellipse at 70% 30%, rgba(0,0,0,0.4) 0%, transparent 60%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 30%, rgba(0,0,0,0.4) 0%, transparent 60%);
+}
+
+/* El contenido de cada sección va sobre la textura */
+.full-section > * {
+  position: relative;
+  z-index: 1;
+}
+/* ── FULL SECTION: exactamente una pantalla ─────────────────────────── */
+.full-section {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.full-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAV PILL transparente ───────────────────────────────────────────── */
+.btn-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.65);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.btn-nav-pill:hover {
+  color: #00a0a0;
+  border-color: #00a0a0;
+  background: rgba(0,160,160,0.06);
+}
+
+/* ── MOBILE: ocultar nav pills, mostrar solo hamburger ───────────────── */
+@media (max-width: 900px) {
+  .btn-nav-pill { display: none !important; }
+  .hamburger-btn { display: flex !important; }
+}
+@media (min-width: 901px) {
+  .hamburger-btn { display: none !important; }
+}
+
+/* ── MOBILE: secciones sin altura fija ───────────────────────────────── */
+@media (max-width: 768px) {
+  .full-section {
+    height: auto !important;
+    overflow: visible !important;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+  .services-grid  { grid-template-columns: 1fr !important; }
+  .steps-grid     { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .tools-grid     { grid-template-columns: 1fr !important; }
+  .desktop-only   { display: none !important; }
+  header          { padding: 0 20px !important; }
+}
+
+@keyframes bounce-up {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
